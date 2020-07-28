@@ -26,6 +26,22 @@ const questions = [
     message: "Enter Name",
     name: "name",
   },
+  {
+    type: "input",
+    message: "Enter ID",
+    name: "id",
+  },
+  {
+    type: "input",
+    message: "Enter Email",
+    name: "email",
+  },
+  {
+    type: "list",
+    message: "Choose Role",
+    name: "role",
+    choices: ["Manager", "Engineer", "Intern"],
+  },
 ];
 
 // name
