@@ -1,46 +1,96 @@
-// DEPENDENCIES==================================================
-// LINKS to JS pages in Library
+// Dependencies==============
 const Manager = require("./lib/Manager");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
-// MODULES
+
 const inquirer = require("inquirer");
 const path = require("path");
 const fs = require("fs");
-// OUTPUT
+
+// Output
 const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
-// add a dependecy called JEST for testing?
 
-// USER INPUT====================================================
+// User Input via Inquirer===============
 
-// prompt the user for info on team manager
-// engineer
-// intern
 const questions = [
-  // MANAGER
+  // Start Questions to determine role
+  {
+    type: "list",
+    message: "Choose Employee Role",
+    name: "role",
+    choices: ["Manager", "Engineer", "Intern", "I am finished adding members"],
+  },
+];
+// Manager Questions
+const managerQ = [
   {
     type: "input",
-    message: "Enter Name",
+    message: "Manager: Name",
     name: "name",
   },
   {
     type: "input",
-    message: "Enter ID",
+    message: "Manager: ID",
     name: "id",
   },
   {
     type: "input",
-    message: "Enter Email",
+    message: "Manager: Email",
     name: "email",
   },
   {
-    type: "list",
-    message: "Choose Role",
-    name: "role",
-    choices: ["Manager", "Engineer", "Intern"],
+    type: "input",
+    message: "Manager: Office Number",
+    name: "officenum",
+  },
+];
+// Engineer Questions
+const engineerQ = [
+  {
+    type: "input",
+    message: "Engineer: Name",
+    name: "name",
+  },
+  {
+    type: "input",
+    message: "Engineer: ID",
+    name: "id",
+  },
+  {
+    type: "input",
+    message: "Engineer: Email",
+    name: "email",
+  },
+  {
+    type: "input",
+    message: "Engineer: Github user name",
+    name: "github",
+  },
+];
+// Intern Questions
+const internQ = [
+  {
+    type: "input",
+    message: "Intern: Name",
+    name: "name",
+  },
+  {
+    type: "input",
+    message: "Intern: ID",
+    name: "id",
+  },
+  {
+    type: "input",
+    message: "Intern: Email",
+    name: "email",
+  },
+  {
+    type: "input",
+    message: "Intern: School",
+    name: "school",
   },
 ];
 
