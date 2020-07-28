@@ -13,12 +13,13 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
 
-// User Input via Inquirer===============
 let employeesArray = [];
 let employee = "";
 
-const employeeQ = [
+// User Input via Inquirer===============
   // Start Questions to determine role
+const employeeQ = [
+
   {
     type: "list",
     message: "Choose Employee Role",
@@ -26,8 +27,6 @@ const employeeQ = [
     choices: ["Manager", "Engineer", "Intern", "I am finished adding members"],
   },
 ];
-
-
 
 // Manager Questions
 const managerQ = [
@@ -49,7 +48,7 @@ const managerQ = [
   {
     type: "input",
     message: "Manager: Office Number",
-    name: "officeNum",
+    name: "officeNumber",
   },
 ];
 // Engineer Questions
@@ -100,30 +99,50 @@ const internQ = [
 ];
 
 // Functions================
-
-function questions() {
   // prompt question for the user inquirer module
-  inquirer.prompt(employeeQ).then(function ({role}) {
-    // writeToFile("README.md", genMarkdown(response));
-    switch(role){
+function questions() {
+  inquirer.prompt(employeeQ).then(function ({ role }) {
+    switch (role) {
       case "Manager":
         inquirer
         .prompt(managerQ)
-        .then(function ({name, id, email, officeNum}){
-          employee = new Manager(name, id, email, officeNum)
-          employeesArray.push(employee)
-          questions[0].choices = [
+        .then(function ({name, id, email, officeNumber}){
+          employee = new Manager(name, id, email, officeNumber);
+          employeesArray.push(employee);
+          employeeQ[0].choices = [
             "Engineer",
             "Intern",
             "I am finished adding members.",
-          ]
-          questions()
+          ];
+          questions();
         });
         break;
+
+        case "Engineer":
+        inquirer
+        .prompt(engineerQ)
+        .then(function ({name, id, email, github}){
+employee = new Engineer(name, id, email, github);
+employeesArray.push(employee);
+questions();
+        });
+        break;
+
+case "Intern":
+inquirer
+.prompt(internQ)
+.then(function ({ name, id, email, school }){
+  employee = new Intern(name, id, email, school);
+  employeesArray.push(employee);
+  questions();
+});
+break;
+default:
+  const employeeData = render(employeesArray);
     
 
 // function call to initialize program
-init();
+
 
 // After the user has input all employees desired, call the `render` function (required
 // above) and pass in an array containing all employee objects; the `render` function will
