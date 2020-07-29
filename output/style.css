@@ -1,21 +1,15 @@
-body {
-  background-color: lightblue;
+* body {
+  background-color: rgb(131, 158, 167);
 }
 
 @media screen and (min-width: 400px) {
   body {
-    background-color: lightgreen;
-  }
-  .cards {
-    max-width: 50%;
+    background-color: rgb(170, 165, 167);
   }
 }
 
 @media screen and (min-width: 800px) {
   body {
     background-color: lavender;
-  }
-  .cards {
-    max-width: 100%;
   }
 }
